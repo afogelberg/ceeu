@@ -460,7 +460,7 @@
     font-weight: 300; }
   .cu .text-weight-normal {
     font-weight: 400; }
-  .cu .text-weight-bold {
+  .cu .text-weight-semibold {
     font-weight: 600; }
   .cu .text-weight-bold {
     font-weight: 700; }
@@ -545,17 +545,23 @@
   .cu .box-shadow-subtle {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2); }
   .cu .round {
-    border-radius: 50%; }
+    border-radius: 50%;
+    overflow: hidden; }
   .cu .rounded {
-    border-radius: 0.25rem; }
+    border-radius: 0.25rem;
+    overflow: hidden; }
   .cu .rounded-top {
-    border-radius: 0.25rem 0.25rem 0 0; }
+    border-radius: 0.25rem 0.25rem 0 0;
+    overflow: hidden; }
   .cu .rounded-right {
-    border-radius: 0 0.25rem 0.25rem 0; }
+    border-radius: 0 0.25rem 0.25rem 0;
+    overflow: hidden; }
   .cu .rounded-bottom {
-    border-radius: 0 0 0.25rem 0.25rem; }
+    border-radius: 0 0 0.25rem 0.25rem;
+    overflow: hidden; }
   .cu .rounded-left {
-    border-radius: 0.25rem 0 0 0.25rem; }
+    border-radius: 0.25rem 0 0 0.25rem;
+    overflow: hidden; }
   .cu .cursor-auto {
     cursor: auto; }
   .cu .cell {
@@ -732,9 +738,12 @@
       .cu .button.border.active,
       .cu button.border.active {
         border: 2px solid #b5b5b5; }
+      .cu .button.border.active:hover,
+      .cu button.border.active:hover {
+        border: 2px solid #b5b5b5; }
     .cu .button.border:hover,
     .cu button.border:hover {
-      border: 2px solid #b5b5b5; }
+      border: 2px solid #dbdbdb; }
     .cu .button.border.primary,
     .cu button.border.primary {
       border: 2px solid #33aaff; }
@@ -753,18 +762,24 @@
   .cu button,
   .cu .button {
     outline: none; }
-  .cu button:hover,
-  .cu .button:hover {
+  .cu button:hover.light:hover,
+  .cu .button:hover.light:hover {
     background-color: #dbdbdb; }
-    .cu button:hover.light:hover,
-    .cu .button:hover.light:hover {
-      background-color: #dbdbdb; }
-    .cu button:hover.primary:hover,
-    .cu .button:hover.primary:hover {
-      background-color: #0080db; }
-    .cu button:hover.danger:hover,
-    .cu .button:hover.danger:hover {
-      background-color: #ae332d; }
+  .cu button:hover.primary:hover,
+  .cu .button:hover.primary:hover {
+    background-color: #0080db; }
+  .cu button:hover.danger:hover,
+  .cu .button:hover.danger:hover {
+    background-color: #ae332d; }
+  .cu button:hover.grey-light:hover,
+  .cu .button:hover.grey-light:hover {
+    background-color: #7a7a7a; }
+  .cu button:hover.grey-lighter:hover,
+  .cu .button:hover.grey-lighter:hover {
+    background-color: #b5b5b5; }
+  .cu button:hover.grey-lightest:hover,
+  .cu .button:hover.grey-lightest:hover {
+    background-color: #dbdbdb; }
   .cu .icon > * {
     margin: 0;
     padding: 0; }
@@ -816,6 +831,46 @@
     border: none; }
   .cu .toggle-group {
     display: inline-block; }
+  .cu .sidenav {
+    box-sizing: border-box;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s; }
+    .cu .sidenav .first {
+      box-sizing: border-box;
+      display: inline-block;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 0;
+      transition: all 0.3s;
+      width: 100%;
+      will-change: transform; }
+    .cu .sidenav .secondary {
+      background-color: #fff;
+      box-sizing: border-box;
+      display: inline-block;
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      left: 0;
+      opacity: 0;
+      top: 0;
+      will-change: transform;
+      transition: all 0.3s;
+      z-index: 1000; }
+    .cu .sidenav.right .secondary {
+      transform: translateX(100%); }
+    .cu .sidenav.left .secondary {
+      transform: translateX(-100%); }
+    .cu .sidenav.unfolded.right .first {
+      transform: translateX(-20%); }
+    .cu .sidenav.unfolded.left .first {
+      transform: translateX(20%); }
+    .cu .sidenav.unfolded .secondary {
+      opacity: 1;
+      transform: none; }
 
 .app {
   background-color: rgba(0, 0, 0, 0.1);

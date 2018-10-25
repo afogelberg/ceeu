@@ -10,6 +10,7 @@
     "watch-sass": "node-sass -w --include-path scss scss/ceeu.scss build/css/ceeu.css",
     "build-sass": "node-sass --include-path scss scss/ceeu.scss build/css/ceeu.css",
     "prebuild-sass": "node-sass --include-path scss scss/ceeu.scss build/css/ceeu.css",
+    "build-js": "webpack --config ./tasks/webpack.prod.js",
     "test": "tape -r ./src/component babel-register test/**/*.js"
   },
   "author": "Andreas Fogelberg",

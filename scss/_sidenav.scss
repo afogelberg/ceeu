@@ -1,0 +1,59 @@
+.sidenav {
+  box-sizing: border-box;  
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s;
+  .first {
+    box-sizing: border-box;    
+    display: inline-block;
+    overflow: hidden;
+    position: absolute;    
+    left: 0;
+    top: 0;    
+    transition: all 0.3s;    
+    width: 100%;    
+    will-change: transform;
+  }
+  .secondary {
+    background-color: #fff;
+    box-sizing: border-box;    
+    display: inline-block;
+    position: absolute;
+    overflow: hidden;  
+    width: 100%;
+    left: 0;
+    opacity: 0;
+    top: 0;
+    will-change: transform;
+    transition: all 0.3s;
+    z-index: 1000;
+  }
+  &.right {
+    .secondary {
+      transform: translateX(100%);
+    }
+  }
+  &.left {
+    .secondary {
+      transform: translateX(-100%);
+    }
+  }  
+
+  &.unfolded {
+    &.right {
+      .first {
+        transform: translateX(-20%);
+      }
+    }
+    &.left {
+      .first {
+        transform: translateX(20%);
+      }  
+    }  
+    .secondary {
+      opacity: 1;
+      transform: none;
+    }
+  }  
+}
