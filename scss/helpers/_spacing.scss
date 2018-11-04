@@ -16,23 +16,23 @@
 .spacing-vertical-small > * {
   margin: $spacing-small 0;
 }
-.spacing-horizontal-large > *:first-child,
-.spacing-horizontal-standard > *:first-child,
-.spacing-horizontal-small > *:first-child {
+.spacing-horizontal-large:first-child,
+.spacing-horizontal:first-child,
+.spacing-horizontal-small:first-child {
   margin-left: 0;
 }
-.spacing-horizontal-large > *:last-child,
-.spacing-horizontal-standard > *:last-child,
-.spacing-horizontal-small > *:last-child {
+.spacing-horizontal-large:last-child,
+.spacing-horizontal:last-child,
+.spacing-horizontal-small:last-child {
   margin-right: 0;
 }
-.spacing-vertical-large > *:first-child,
-.spacing-vertical-standard > *:first-child,
-.spacing-vertical-small > *:first-child {
+.spacing-vertical-large:first-child,
+.spacing-vertical:first-child,
+.spacing-vertical-small:first-child {
   margin-top: 0;
 }
-.spacing-vertical-large > *:last-child,
-.spacing-vertical-standard > *:last-child,
-.spacing-vertical-small > *:last-child {
+.spacing-vertical-large:last-child,
+.spacing-vertical:last-child,
+.spacing-vertical-small:last-child {
   margin-bottom: 0;
 }

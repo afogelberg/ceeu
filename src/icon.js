@@ -28,6 +28,9 @@ export default function Icon(options = {}) {
           </svg>
         `;
       }
+      if (iconType === 'svg' || iconType === 'img') {
+        return icon;
+      }
       return '';
     },
     update() {

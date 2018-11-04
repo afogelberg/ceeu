@@ -1,13 +1,15 @@
 const typeOfIcon = function typeOfIcon(src) {
   if (src.length) {
-    let char = src.slice(0, 1);
-    if (char === '#') {
+    if (src.startsWith('#')) {
       return 'sprite';
-    } else {
-      return 'image';
+    } else if (src.startsWith('<svg')) {
+      return 'svg';
+    } else if (src.startsWith('<img')) {
+      return 'img';
     }
+    return 'image';
   }
   return '';
-}
+};
 
 export default typeOfIcon;

@@ -7,30 +7,56 @@ $icon-active-color: $primary-color;
 $icon-default-color: $grey-dark;
 $icon-primary-color: $primary-color;
 $icon-primary-inverse-color: $primary-color-inverse;
-.icon > * {
-  margin: 0;
-  padding: 0;
-}
-.icon-smallest > * {
+
+.icon-smallest:not(.button):not(button) {
   height: $icon-size-smallest;
   width: $icon-size-smallest;
 }
-.icon-smaller > * {
+.icon-smaller:not(.button):not(button) {
   height: $icon-size-smaller;
   width: $icon-size-smaller;
 }
-.icon-small > * {
+.icon-small:not(.button):not(button) {
   height: $icon-size-small;
   width: $icon-size-small;
 }
-.icon-medium > * {
+.icon-medium:not(.button):not(button) {
   height: $icon-size-medium;
   width: $icon-size-medium;
 }
-.icon-large > * {
+.icon-large:not(.button):not(button) {
   height: $icon-size-large;
   width: $icon-size-large;
 }
+
+.button,
+button {
+  &.icon > * {
+    margin: 0;
+    padding: 0;
+  }
+  &.icon-smallest > * {
+    height: $icon-size-smallest;
+    width: $icon-size-smallest;
+  }
+  &.icon-smaller > * {
+    height: $icon-size-smaller;
+    width: $icon-size-smaller;
+  }
+  &.icon-small > * {
+    height: $icon-size-small;
+    width: $icon-size-small;
+  }
+  &.icon-medium > * {
+    height: $icon-size-medium;
+    width: $icon-size-medium;
+  }
+  &.icon-large > * {
+    height: $icon-size-large;
+    width: $icon-size-large;
+  }
+}
+
 .button[class^="icon"],
 .button[class*="icon"],
 button[class^="icon"],
@@ -53,4 +79,14 @@ svg {
   &.primary {
     fill: $icon-primary-color;
   }
+}
+
+img.cover {
+  object-fit: cover;
+}
+img.contain {
+  object-fit: contain;
+}
+img.scale-down {
+  object-fit: scale-down;
 }
