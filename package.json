@@ -16,11 +16,11 @@
   "author": "Andreas Fogelberg",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.0",
+    "@babel/core": "^7.1.2",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^8.0.1",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
+    "babel-loader": "^8.0.4",
     "babel-register": "^6.26.0",
     "compression-webpack-plugin": "^1.1.11",
     "eslint": "^4.19.1",
@@ -37,6 +37,9 @@
     "webpack-merge": "^4.1.2"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/runtime": "^7.1.2",
+    "@babel/runtime-corejs2": "^7.1.2",
     "cuid": "^2.1.1"
   }
 }

@@ -71,7 +71,9 @@ export default function Button(options = {}) {
       icon = evt.icon;
       iconComponent.setIcon(icon);
     }
-    this.dispatch('update');
+    if (evt.text || evt.icon) {
+      this.dispatch('update');
+    }
   };
 
   const onUpdate = function onUpdate() {

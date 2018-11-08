@@ -11,15 +11,16 @@ module.exports = {
         query: {
           cacheDirectory: false,
           presets: [
-            ['env', {
+            ['@babel/preset-env', {
               targets: {
                 browsers: ['ie >= 11']
               },
-              modules: false
+              modules: false,
+              useBuiltIns: 'usage'
             }]
           ],
           plugins: [
-            ['transform-runtime', {
+            ['@babel/plugin-transform-runtime', {
               regenerator: true
             }]
           ]
