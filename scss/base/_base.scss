@@ -35,3 +35,5 @@ a {
     color: $link-hover;
   }
 }
+// Workaround for IE. If not applied causes IE to freeze if svg is removed from dom
+svg use { pointer-events:none; }
