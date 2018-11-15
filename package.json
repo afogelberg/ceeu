@@ -5,7 +5,7 @@
   "style": "build/css/ceeu.css",
   "main": "ceeu.js",
   "scripts": {
-    "start": "npm run watch-js | npm run prebuild-sass | npm run watch-sass",
+    "start": "npm run watch-sass | npm run watch-js",
     "watch-js": "webpack-dev-server --config ./tasks/webpack.dev.js",
     "watch-sass": "node-sass -w --include-path scss scss/ceeu.scss build/css/ceeu.css",
     "build-sass": "node-sass --include-path scss scss/ceeu.scss build/css/ceeu.css",
@@ -21,7 +21,6 @@
     "@babel/preset-env": "^7.1.0",
     "babel-eslint": "^8.0.1",
     "babel-loader": "^8.0.4",
-    "babel-register": "^6.26.0",
     "compression-webpack-plugin": "^1.1.11",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",

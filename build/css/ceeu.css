@@ -98,6 +98,8 @@
       color: currentColor; }
     .cu a:hover {
       color: #b5b5b5; }
+  .cu svg use {
+    pointer-events: none; }
   .cu .fade-in {
     animation: 0.3s fade-in ease; }
 

@@ -1,4 +1,5 @@
 import Button from './src/button';
+import Collapse from './src/collapse';
 import Icon from './src/icon';
 import Element from './src/element';
 import Sidenav from './src/sidenav';
@@ -9,6 +10,7 @@ import Eventer from './src/utils/eventer';
 
 const cu = {
   Button,
+  Collapse,
   Component,
   Element,
   Eventer,
