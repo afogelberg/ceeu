@@ -2,6 +2,8 @@ import Component from './component';
 import cuid from './utils/cuid';
 import { createStyle } from './dom/dom';
 
+// Inspired by animated-clip: https://github.com/GoogleChromeLabs/ui-element-samples/tree/gh-pages/animated-clip
+
 export default function Collapse(options = {}) {
   let {
     expanded = false
