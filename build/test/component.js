@@ -37,20 +37,21 @@ var app = function app() {
       },
       render: function render() {
         var id = this.getId();
-        return '<div id="' + id + '" class="collapse-header">Header</div>'
+        return '<h6 id="' + id + '" class="collapse-header padding-large">Header</h6>'
       }
     });
     var contentCmp = cu.Component({
       render: function render() {
         var id = this.getId();
-        return '<div id="' + id + '"class="width-20">' + loremText + '</div>';
+        return '<div id="' + id + '" class="relative width-20"><div class="absolute divider horizontal"></div><div class="padding-large">' + loremText + '</div></div>';
       }
     });    
     return cu.Collapse({
+      cls: 'control abosolute overlow-hidden',
       collapseX: false,
       contentComponent: contentCmp,
       headerComponent: headerCmp,
-      origin: 'top-center'
+      origin: 'top-left'
     });
   };  
 

@@ -7,6 +7,7 @@ $divider-color: $grey-lighter;
   &.horizontal {
     border-bottom: 1px solid $divider-color;
     border-right: none;
+    line-height: 0;
     width: 100%;
   }
 }

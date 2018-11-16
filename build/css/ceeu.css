@@ -782,52 +782,11 @@
   .cu button:hover.grey-lightest:hover,
   .cu .button:hover.grey-lightest:hover {
     background-color: #dbdbdb; }
-  .cu .collapse-outer {
-    opacity: 0;
+  .cu .collapse-container {
     overflow: hidden;
-    pointer-events: none;
+    position: relative;
     will-change: transform;
-    animation-duration: 200ms;
-    animation-timing-function: step-end; }
-    .cu .collapse-outer.top-left {
-      transform-origin: top left; }
-    .cu .collapse-outer.top-center {
-      transform-origin: top center; }
-    .cu .collapse-outer.top-right {
-      transform-origin: top right; }
-    .cu .collapse-outer.bottom-left {
-      transform-origin: bottom left; }
-    .cu .collapse-outer.bottom-center {
-      transform-origin: bottom center; }
-    .cu .collapse-outer.bottom-right {
-      transform-origin: bottom right; }
-    .cu .collapse-outer.active {
-      opacity: 1;
-      pointer-events: auto; }
-    .cu .collapse-outer.expanded {
-      animation-name: outerExpandAnimation; }
-    .cu .collapse-outer.collapsed {
-      animation-name: outerCollapseAnimation; }
-  .cu .collapse-inner {
-    will-change: transform;
-    animation-duration: 200ms;
-    animation-timing-function: step-end; }
-    .cu .collapse-inner.top-left {
-      transform-origin: top left; }
-    .cu .collapse-inner.top-center {
-      transform-origin: top center; }
-    .cu .collapse-inner.top-right {
-      transform-origin: top right; }
-    .cu .collapse-inner.bottom-left {
-      transform-origin: bottom left; }
-    .cu .collapse-inner.bottom-center {
-      transform-origin: bottom center; }
-    .cu .collapse-inner.bottom-right {
-      transform-origin: bottom right; }
-    .cu .collapse-inner.expanded {
-      animation-name: innerExpandAnimation; }
-    .cu .collapse-inner.collapsed {
-      animation-name: innerCollapseAnimation; }
+    transition: all 0.3s; }
   .cu .icon-smallest:not(.button):not(button) {
     height: 0.75rem;
     width: 0.75rem; }
@@ -896,6 +855,7 @@
     .cu .divider.horizontal {
       border-bottom: 1px solid #dbdbdb;
       border-right: none;
+      line-height: 0;
       width: 100%; }
   .cu .list > .item {
     padding-top: 0.75rem;
