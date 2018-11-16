@@ -1,33 +1,66 @@
-.collapse {
-  position: absolute;
+.collapse-outer {
   opacity: 0;
-  transform-origin: top left;
   overflow: hidden;
   pointer-events: none;
   will-change: transform;
   animation-duration: 200ms;
   animation-timing-function: step-end;
+  &.top-left {
+    transform-origin: top left;
+  }
+  &.top-center {
+    transform-origin: top center;
+  }  
+  &.top-right {
+    transform-origin: top right;
+  }
+  &.bottom-left {
+    transform-origin: bottom left;
+  }
+  &.bottom-center {
+    transform-origin: bottom center;
+  }  
+  &.bottom-right {
+    transform-origin: bottom right;
+  }
   &.active {
     opacity: 1;
     pointer-events: auto;
   }
   &.expanded {
-    animation-name: menuExpandAnimation;    
+    animation-name: outerExpandAnimation;    
   }
   &.collapsed {
-    animation-name: menuCollapseAnimation;
+    animation-name: outerCollapseAnimation;
   }
 }
 
-.collapse-container {
-  transform-origin: top left;
+.collapse-inner {
   will-change: transform;
   animation-duration: 200ms;
   animation-timing-function: step-end;
+  &.top-left {
+    transform-origin: top left;
+  }
+  &.top-center {
+    transform-origin: top center;
+  }  
+  &.top-right {
+    transform-origin: top right;
+  }
+  &.bottom-left {
+    transform-origin: bottom left;
+  }
+  &.bottom-center {
+    transform-origin: bottom center;
+  }  
+  &.bottom-right {
+    transform-origin: bottom right;
+  }     
   &.expanded {
-    animation-name: menuExpandContentsAnimation;
+    animation-name: innerExpandAnimation;
   }
   &.collapsed {
-    animation-name: menuCollapseContentsAnimation;
+    animation-name: innerCollapseAnimation;
   } 
 }

@@ -8,90 +8,74 @@ export default function Collapse(options = {}) {
   } = options;
   const {
     cls = '',
+    collapseX = true,
+    collapseY = true,
     easeCls = 'cu-collapse-ease',
     contentComponent,
     headerComponent,
+    origin = 'top-left',
     data = {},
     style: styleSettings,
-    duration = 200,
-    frameTime = 1000 / 60
+    duration = 200
   } = options;
 
   const style = createStyle(styleSettings);
+  const frameTime = 1000 / 60;
   const nFrames = Math.round(duration / frameTime);
+  const xCollapse = collapseX ? 0 : 1;
+  const yCollapse = collapseY ? 0 : 1;
   const toggleEvent = 'collapse:toggle';
-  const containerId = cuid();
+  const outerId = cuid();
+  const innerId = cuid();
   let animate = false;
-  let collapsed;
   let collapseEl;
-  let containerEl;
-  let headerEl;
-  let contentEl;
+  let outerEl;
+  let innerEl;
 
-  const applyAnimation = function applyAnimation({ expand }) {
-    collapseEl.classList.remove('expanded');
-    collapseEl.classList.remove('collapsed');
-    containerEl.classList.remove('expanded');
-    containerEl.classList.remove('collapsed');
+  const applyAnimation = function applyAnimation() {
+    outerEl.classList.remove('expanded');
+    outerEl.classList.remove('collapsed');
+    innerEl.classList.remove('expanded');
+    innerEl.classList.remove('collapsed');
 
     // Force a recalc styles here so the classes take hold.
-    window.getComputedStyle(collapseEl).transform;
+    window.getComputedStyle(outerEl).transform;
 
-    if (expand) {
-      collapseEl.classList.add('expanded');
-      containerEl.classList.add('expanded');
+    if (expanded) {
+      outerEl.classList.add('expanded');
+      innerEl.classList.add('expanded');
       return;
     }
-    collapseEl.classList.add('collapsed');
-    containerEl.classList.add('collapsed');
-  };
-
-  const calculateScales = function calculateScales() {
-    const collapsedRect = headerEl.getBoundingClientRect();
-    const expandedRect = collapseEl.getBoundingClientRect();
-
-    collapsed = {
-      x: collapsedRect.width / expandedRect.width,
-      y: collapsedRect.height / expandedRect.height
-    };
+    outerEl.classList.add('collapsed');
+    innerEl.classList.add('collapsed');
   };
 
   const activate = function activate() {
-    collapseEl.classList.add('active');
+    outerEl.classList.add('active');
     animate = true;
   };
 
   const collapse = function collapse() {
-    if (!expanded) {
-      return;
-    }
     expanded = false;
 
-    const { x, y } = collapsed;
-    const invX = 1 / x;
-    const invY = 1 / y;
-
-    collapseEl.style.transform = `scale(${x}, ${y})`;
-    containerEl.style.transform = `scale(${invX}, ${invY})`;
+    outerEl.style.transform = `scale(${xCollapse},${yCollapse})`;
+    innerEl.style.transform = 'scale(1, 1)';
 
     if (!animate) {
       return;
     }
-    applyAnimation({ expand: false });
+    applyAnimation();
   };
 
   const expand = function expand() {
-    if (expanded) {
-      return;
-    }
     expanded = true;
-    collapseEl.style.transform = 'scale(1, 1)';
-    containerEl.style.transform = 'scale(1, 1)';
+    outerEl.style.transform = 'scale(1, 1)';
+    innerEl.style.transform = 'scale(1, 1)';
 
     if (!animate) {
       return;
     }
-    applyAnimation({ expand: true });
+    applyAnimation();
   };
 
   const toggle = function toggle(evt) {
@@ -142,26 +126,26 @@ export default function Collapse(options = {}) {
   };
 
   const createEaseAnimations = function createEaseAnimations() {
-    let menuEase = document.querySelector(`.${easeCls}`);
-    if (menuEase) {
-      return menuEase;
+    let collapseEase = document.querySelector(`.${easeCls}`);
+    if (collapseEase) {
+      return collapseEase;
     }
 
-    menuEase = document.createElement('style');
-    menuEase.classList.add(`${easeCls}`);
+    collapseEase = document.createElement('style');
+    collapseEase.classList.add(`${easeCls}`);
 
-    const menuExpandAnimation = [];
-    const menuExpandContentsAnimation = [];
-    const menuCollapseAnimation = [];
-    const menuCollapseContentsAnimation = [];
+    const outerExpandAnimation = [];
+    const innerExpandAnimation = [];
+    const outerCollapseAnimation = [];
+    const innerCollapseAnimation = [];
 
     const percentIncrement = 100 / nFrames;
 
     for (let i = 0; i <= nFrames; i += 1) {
       const step = ease(i / nFrames).toFixed(5);
       const percentage = (i * percentIncrement).toFixed(5);
-      const startX = collapsed.x;
-      const startY = collapsed.y;
+      const startX = xCollapse;
+      const startY = yCollapse;
       const endX = 1;
       const endY = 1;
 
@@ -173,8 +157,8 @@ export default function Collapse(options = {}) {
         startY,
         endX,
         endY,
-        outerAnimation: menuExpandAnimation,
-        innerAnimation: menuExpandContentsAnimation
+        outerAnimation: outerExpandAnimation,
+        innerAnimation: innerExpandAnimation
       });
 
       // Collapse animation.
@@ -183,29 +167,29 @@ export default function Collapse(options = {}) {
         step,
         startX: 1,
         startY: 1,
-        endX: collapsed.x,
-        endY: collapsed.y,
-        outerAnimation: menuCollapseAnimation,
-        innerAnimation: menuCollapseContentsAnimation
+        endX: xCollapse,
+        endY: yCollapse,
+        outerAnimation: outerCollapseAnimation,
+        innerAnimation: innerCollapseAnimation
       });
     }
 
-    menuEase.textContent = `
-    @keyframes menuExpandAnimation {
-      ${menuExpandAnimation.join('')}
+    collapseEase.textContent = `
+    @keyframes outerExpandAnimation {
+      ${outerExpandAnimation.join('')}
     }
-    @keyframes menuExpandContentsAnimation {
-      ${menuExpandContentsAnimation.join('')}
+    @keyframes innerExpandAnimation {
+      ${innerExpandAnimation.join('')}
     }
-    @keyframes menuCollapseAnimation {
-      ${menuCollapseAnimation.join('')}
+    @keyframes outerCollapseAnimation {
+      ${outerCollapseAnimation.join('')}
     }
-    @keyframes menuCollapseContentsAnimation {
-      ${menuCollapseContentsAnimation.join('')}
+    @keyframes innerCollapseAnimation {
+      ${innerCollapseAnimation.join('')}
     }`;
 
-    document.head.appendChild(menuEase);
-    return menuEase;
+    document.head.appendChild(collapseEase);
+    return collapseEase;
   };
 
   return Component({
@@ -227,20 +211,25 @@ export default function Collapse(options = {}) {
     onRender() {
       collapseEl = document.getElementById(this.getId());
       collapseEl.addEventListener(toggleEvent, this.toggle.bind(this));
-      containerEl = document.getElementById(containerId);
-      headerEl = document.getElementById(headerComponent.getId());
-      contentEl = document.getElementById(contentComponent.getId());
+      outerEl = document.getElementById(outerId);
+      innerEl = document.getElementById(innerId);
       this.dispatch('render');
-      calculateScales();
       createEaseAnimations();
-      this.collapse();
+
+      if (expanded) {
+        this.expand();
+      } else {
+        this.collapse();
+      }
       this.activate();
     },
     render: function render() {
-      return `<div id="${this.getId()}" class="collapse">
-                <div id="${containerId}" class="collapse-container">
-                  ${headerComponent.render()}
-                  ${contentComponent.render()}
+      return `<div id="${this.getId()}" class="collapse ${cls}" style="${style}">
+                ${headerComponent.render()}
+                <div id="${outerId}" class="collapse-outer ${origin}">
+                  <div id="${innerId}" class="collapse-inner ${origin}">
+                    ${contentComponent.render()}
+                  </div>
                 </div>
               </div>`;
     },

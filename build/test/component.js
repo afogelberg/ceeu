@@ -1,5 +1,7 @@
 var app = function app() { 
 
+  var loremText = 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem deleniti aspernatur laboriosam fugit illo impedit, ab maiores modi dolorem fuga officia temporibus voluptates eum deserunt! Exercitationem soluta suscipit delectus vitae.'
+
   var Buttons = function Buttons() {
     var btn1;
     return cu.Component({
@@ -41,12 +43,14 @@ var app = function app() {
     var contentCmp = cu.Component({
       render: function render() {
         var id = this.getId();
-        return '<div id="' + id + '"class="collapse-content">Content</div>';
+        return '<div id="' + id + '"class="width-20">' + loremText + '</div>';
       }
     });    
     return cu.Collapse({
+      collapseX: false,
       contentComponent: contentCmp,
-      headerComponent: headerCmp
+      headerComponent: headerCmp,
+      origin: 'top-center'
     });
   };  
 
