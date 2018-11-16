@@ -39,6 +39,7 @@ export default function Collapse(options = {}) {
     innerEl.classList.remove('collapsed');
 
     // Force a recalc styles here so the classes take hold.
+    // eslint-disable-next-line no-unused-expressions
     window.getComputedStyle(outerEl).transform;
 
     if (expanded) {
