@@ -782,6 +782,29 @@
   .cu button:hover.grey-lightest:hover,
   .cu .button:hover.grey-lightest:hover {
     background-color: #dbdbdb; }
+  .cu .collapse {
+    position: absolute;
+    opacity: 0;
+    transform-origin: top left;
+    overflow: hidden;
+    pointer-events: none;
+    will-change: transform;
+    animation-duration: 200ms;
+    animation-timing-function: step-end; }
+    .cu .collapse.active {
+      opacity: 1;
+      pointer-events: auto; }
+    .cu .collapse.expanded {
+      animation-name: menuExpandAnimation; }
+    .cu .collapse.collapsed {
+      animation-name: menuCollapseAnimation; }
+  .cu .collapse-container {
+    transform-origin: top left;
+    will-change: transform;
+    animation-duration: 200ms;
+    animation-timing-function: step-end; }
+    .cu .collapse-container.expanded {
+      animation-name: menuExpandContentsAnimation; }
   .cu .icon-smallest:not(.button):not(button) {
     height: 0.75rem;
     width: 0.75rem; }

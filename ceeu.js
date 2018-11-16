@@ -7,9 +7,11 @@ import ToggleGroup from './src/togglegroup';
 import * as dom from './src/dom/dom';
 import Component from './src/component';
 import Eventer from './src/utils/eventer';
+import cuid from './src/utils/cuid';
 
 const cu = {
   Button,
+  cuid,
   Collapse,
   Component,
   Element,

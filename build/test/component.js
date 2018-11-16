@@ -25,8 +25,7 @@ var app = function app() {
   var Collapse = function Collapse() {
     var headerCmp = cu.Component({
       onRender: function onRender() {
-        var headerEl = document.getElementById(this.getId);
-        console.log(headerEl);
+        var headerEl = document.getElementById(this.getId());
         headerEl.addEventListener('click', function(e) {
           var customEvt = new CustomEvent('collapse:toggle', {
             bubbles: true

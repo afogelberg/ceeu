@@ -1,5 +1,5 @@
 import Component from './component';
-import Element from './element';
+import cuid from './utils/cuid';
 import { createStyle } from './dom/dom';
 
 export default function Collapse(options = {}) {
@@ -20,29 +20,30 @@ export default function Collapse(options = {}) {
   const style = createStyle(styleSettings);
   const nFrames = Math.round(duration / frameTime);
   const toggleEvent = 'collapse:toggle';
+  const containerId = cuid();
   let animate = false;
   let collapsed;
   let collapseEl;
+  let containerEl;
   let headerEl;
   let contentEl;
 
   const applyAnimation = function applyAnimation({ expand }) {
-    headerEl.classList.remove('expanded');
-    headerEl.classList.remove('collapsed');
-    contentEl.classList.remove('expanded');
-    contentEl.classList.remove('collapsed');
+    collapseEl.classList.remove('expanded');
+    collapseEl.classList.remove('collapsed');
+    containerEl.classList.remove('expanded');
+    containerEl.classList.remove('collapsed');
 
     // Force a recalc styles here so the classes take hold.
-    window.getComputedStyle(headerEl).transform;
+    window.getComputedStyle(collapseEl).transform;
 
     if (expand) {
       collapseEl.classList.add('expanded');
-      contentEl.classList.add('expanded');
+      containerEl.classList.add('expanded');
       return;
     }
-
     collapseEl.classList.add('collapsed');
-    contentEl.classList.add('collapsed');
+    containerEl.classList.add('collapsed');
   };
 
   const calculateScales = function calculateScales() {
@@ -71,9 +72,9 @@ export default function Collapse(options = {}) {
     const invY = 1 / y;
 
     collapseEl.style.transform = `scale(${x}, ${y})`;
-    contentEl.style.transform = `scale(${invX}, ${invY})`;
+    containerEl.style.transform = `scale(${invX}, ${invY})`;
 
-    if (animate) {
+    if (!animate) {
       return;
     }
     applyAnimation({ expand: false });
@@ -85,7 +86,7 @@ export default function Collapse(options = {}) {
     }
     expanded = true;
     collapseEl.style.transform = 'scale(1, 1)';
-    contentEl.style.transform = 'scale(1, 1)';
+    containerEl.style.transform = 'scale(1, 1)';
 
     if (!animate) {
       return;
@@ -110,7 +111,7 @@ export default function Collapse(options = {}) {
 
   const ease = function ease(v, pow = 4) {
     const clampV = clamp(v, 0, 1);
-    return 1 - Math.pow(1 - clampV, pow);
+    return 1 - ((1 - clampV) ** pow);
   };
 
   const append = function append({
@@ -156,7 +157,7 @@ export default function Collapse(options = {}) {
 
     const percentIncrement = 100 / nFrames;
 
-    nFrames.forEach((i) => {
+    for (let i = 0; i <= nFrames; i += 1) {
       const step = ease(i / nFrames).toFixed(5);
       const percentage = (i * percentIncrement).toFixed(5);
       const startX = collapsed.x;
@@ -187,7 +188,7 @@ export default function Collapse(options = {}) {
         outerAnimation: menuCollapseAnimation,
         innerAnimation: menuCollapseContentsAnimation
       });
-    });
+    }
 
     menuEase.textContent = `
     @keyframes menuExpandAnimation {
@@ -218,24 +219,29 @@ export default function Collapse(options = {}) {
       this.toggle.bind(this);
       if (headerComponent && contentComponent) {
         this.addComponent(headerComponent);
-        // this.addComponent(contentComponent);
+        this.addComponent(contentComponent);
       } else {
         throw new Error('Header or content component is missing in collapse');
       }
     },
     onRender() {
       collapseEl = document.getElementById(this.getId());
-      collapseEl.addEventListener(toggleEvent, this.toggle);
-      this.dispatch('render');
+      collapseEl.addEventListener(toggleEvent, this.toggle.bind(this));
+      containerEl = document.getElementById(containerId);
       headerEl = document.getElementById(headerComponent.getId());
       contentEl = document.getElementById(contentComponent.getId());
+      this.dispatch('render');
       calculateScales();
       createEaseAnimations();
+      this.collapse();
+      this.activate();
     },
     render: function render() {
-      return `<div id="${this.getId()}">
-                ${headerComponent.render()}
-                ${contentComponent.render()}
+      return `<div id="${this.getId()}" class="collapse">
+                <div id="${containerId}" class="collapse-container">
+                  ${headerComponent.render()}
+                  ${contentComponent.render()}
+                </div>
               </div>`;
     },
     toggle

@@ -1,0 +1,33 @@
+.collapse {
+  position: absolute;
+  opacity: 0;
+  transform-origin: top left;
+  overflow: hidden;
+  pointer-events: none;
+  will-change: transform;
+  animation-duration: 200ms;
+  animation-timing-function: step-end;
+  &.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  &.expanded {
+    animation-name: menuExpandAnimation;    
+  }
+  &.collapsed {
+    animation-name: menuCollapseAnimation;
+  }
+}
+
+.collapse-container {
+  transform-origin: top left;
+  will-change: transform;
+  animation-duration: 200ms;
+  animation-timing-function: step-end;
+  &.expanded {
+    animation-name: menuExpandContentsAnimation;
+  }
+  &.collapsed {
+    animation-name: menuCollapseContentsAnimation;
+  } 
+}
