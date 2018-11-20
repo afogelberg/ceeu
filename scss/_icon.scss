@@ -35,23 +35,23 @@ button {
     margin: 0;
     padding: 0;
   }
-  &.icon-smallest .icon {
+  &.icon-smallest .icon > * {
     height: $icon-size-smallest;
     width: $icon-size-smallest;
   }
-  &.icon-smaller .icon {
+  &.icon-smaller .icon > * {
     height: $icon-size-smaller;
     width: $icon-size-smaller;
   }
-  &.icon-small .icon {
+  &.icon-small .icon > * {
     height: $icon-size-small;
     width: $icon-size-small;
   }
-  &.icon-medium .icon {
+  &.icon-medium .icon > * {
     height: $icon-size-medium;
     width: $icon-size-medium;
   }
-  &.icon-large .icon {
+  &.icon-large .icon > * {
     height: $icon-size-large;
     width: $icon-size-large;
   }
@@ -76,6 +76,12 @@ button.active svg {
 .button.primary svg,
 button.primary svg {
   fill: $icon-primary-inverse-color;
+}
+button.grey-light svg,
+.button.grey-light svg,
+.button.grey svg,
+button.grey svg {
+  fill: $white;
 }
 svg {
   &.primary {
