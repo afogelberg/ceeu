@@ -47,7 +47,7 @@ var app = function app() {
       }
     });    
     return cu.Collapse({
-      cls: 'control abosolute overlow-hidden',
+      cls: 'control abosolute overflow-hidden',
       collapseX: false,
       contentComponent: contentCmp,
       headerComponent: headerCmp,

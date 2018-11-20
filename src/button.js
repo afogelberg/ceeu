@@ -2,12 +2,13 @@ import Component from './component';
 import Element from './element';
 import Icon from './icon';
 import { createStyle } from './dom/dom';
+import isComponent from './utils/iscomponent';
 
 export default function Button(options = {}) {
   let {
     icon,
     state = 'initial',
-    text = ''
+    text
   } = options;
   const {
     cls = '',
@@ -28,11 +29,6 @@ export default function Button(options = {}) {
     cls: iconCls,
     style: iconStyle
   }) : '';
-  const textMarkup = text ? Element({
-    cls: textCls,
-    innerHTML: text,
-    tagName: 'span'
-  }).render() : '';
 
   const getState = () => state;
 
@@ -54,10 +50,16 @@ export default function Button(options = {}) {
   };
 
   const getInnerHTML = () => {
-    if (iconComponent) {
-      return `${textMarkup}${iconComponent.render()}`;
+    if (iconComponent && text) {
+      return `<span class="flex row align-center">
+                <span class="${textCls} margin-right-small">${text}</span>
+                <span class="icon">${iconComponent.render()}</span>
+              </span>`;
     }
-    return textMarkup;
+    if (iconComponent) {
+      return `<span class="icon">${iconComponent.render()}</span>`;
+    }
+    return `<span class="${textCls}">${text}</span>`;
   };
 
   const onChange = function onChange(evt) {

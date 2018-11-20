@@ -14,3 +14,30 @@ $list-spacer: .75rem;
     border: none;
   }
 }
+
+.list,
+li {
+  &.hover {
+    &:hover {
+      background-color: $grey-lighter;
+    }
+    &.light:hover {
+      background-color: $grey-lighter;
+    }
+    &.primary:hover {
+      background-color: $primary-color-dark;
+    }
+    &.danger:hover {
+      background-color: $danger-color-dark;
+    }
+    &.grey-light:hover {
+      background-color: $grey;
+    }
+    &.grey-lighter:hover {
+      background-color: $grey-light;
+    }     
+    &.grey-lightest:hover {
+      background-color: $grey-lighter;
+    } 
+  }  
+}

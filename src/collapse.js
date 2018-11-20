@@ -18,6 +18,7 @@ export default function Collapse(options = {}) {
 
   const style = createStyle(styleSettings);
   const toggleEvent = 'collapse:toggle';
+  const collapseEvent = 'collapse:collapse';
   const containerId = cuid();
   let collapseEl;
   let containerEl;
@@ -27,7 +28,6 @@ export default function Collapse(options = {}) {
     expanded = true;
     if (collapseY) {
       const height = contentEl.scrollHeight;
-      console.log(height);
       containerEl.style.height = `${height}px`;
     }
     if (collapseX) {
@@ -70,6 +70,7 @@ export default function Collapse(options = {}) {
     onRender() {
       collapseEl = document.getElementById(this.getId());
       collapseEl.addEventListener(toggleEvent, this.toggle.bind(this));
+      collapseEl.addEventListener(collapseEvent, this.collapse.bind(this));
       containerEl = document.getElementById(containerId);
       contentEl = document.getElementById(contentComponent.getId());
       this.dispatch('render');

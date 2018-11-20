@@ -31,27 +31,27 @@ $icon-primary-inverse-color: $primary-color-inverse;
 
 .button,
 button {
-  &.icon > * {
+  &.icon {
     margin: 0;
     padding: 0;
   }
-  &.icon-smallest > * {
+  &.icon-smallest .icon {
     height: $icon-size-smallest;
     width: $icon-size-smallest;
   }
-  &.icon-smaller > * {
+  &.icon-smaller .icon {
     height: $icon-size-smaller;
     width: $icon-size-smaller;
   }
-  &.icon-small > * {
+  &.icon-small .icon {
     height: $icon-size-small;
     width: $icon-size-small;
   }
-  &.icon-medium > * {
+  &.icon-medium .icon {
     height: $icon-size-medium;
     width: $icon-size-medium;
   }
-  &.icon-large > * {
+  &.icon-large .icon {
     height: $icon-size-large;
     width: $icon-size-large;
   }
@@ -63,16 +63,18 @@ button[class^="icon"],
 button[class*="icon"] {
   line-height: 0;
 }
-.button > svg,
-button > svg {
+.button svg,
+button svg {
   fill: $icon-default-color;
+  height: inherit;
+  width: inherit;
 }
-.button.active > svg,
-button.active > svg {
+.button.active svg,
+button.active svg {
   fill: $icon-active-color;
 }
-.button.primary > svg,
-button.primary > svg {
+.button.primary svg,
+button.primary svg {
   fill: $icon-primary-inverse-color;
 }
 svg {
