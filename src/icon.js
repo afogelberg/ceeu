@@ -35,8 +35,10 @@ export default function Icon(options = {}) {
     },
     update() {
       const el = document.getElementById(this.getId());
-      const newEl = html(this.render());
-      el.parentNode.replaceChild(newEl, el);
+      if (el) {
+        const newEl = html(this.render());
+        el.parentNode.replaceChild(newEl, el);
+      }
     },
     setIcon(newIcon) {
       iconType = typeOfIcon(newIcon);

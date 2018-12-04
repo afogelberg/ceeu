@@ -1,6 +1,22 @@
 .collapse-container {
   overflow: hidden;
   position: relative;
-  will-change: transform;
-  transition: all 0.3s;  
+  transition: all 0.3s;
+}
+
+.collapse {
+  > .collapse-header {
+    .rotate {
+      &.icon {
+        transition:  all 0.3s ease;
+      }
+    }    
+  }  
+  &.expanded > .collapse-header {
+    .rotate {
+      &.icon {
+        transform: rotate(90deg);
+      }     
+    }
+  }
 }

@@ -9,6 +9,9 @@ const Base = function Base() {
   return {
     addComponent(child) {
       const evt = { target: this };
+      if (components.includes(child)) {
+        return child;
+      }
       components.push(child);
       child.dispatch('add', evt);
       return child;

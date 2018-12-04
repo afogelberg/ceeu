@@ -47,3 +47,27 @@
 .bg-grey-lightest {
   background-color: $grey-lightest;
 }
+
+.hover {
+  &:hover {
+    background-color: $grey-lighter;
+  }
+  &.light:hover {
+    background-color: $grey-lighter;
+  }
+  &.primary:hover {
+    background-color: $primary-color-dark;
+  }
+  &.danger:hover {
+    background-color: $danger-color-dark;
+  }
+  &.grey-light:hover {
+    background-color: $grey-light;
+  }
+  &.grey-lighter:hover {
+    background-color: $grey-lighter;
+  }     
+  &.grey-lightest:hover {
+    background-color: $grey-lightest;
+  }
+}

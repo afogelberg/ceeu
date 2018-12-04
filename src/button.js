@@ -19,7 +19,7 @@ export default function Button(options = {}) {
     click,
     style: styleSettings,
     textCls = '',
-    validStates = ['initial', 'active', 'disabled', 'loading']
+    validStates = ['initial', 'active', 'disabled', 'inactive', 'loading']
   } = options;
 
   let buttonEl;
@@ -34,13 +34,15 @@ export default function Button(options = {}) {
 
   const setState = function setState(newState) {
     if (newState !== state && validStates.indexOf(newState) > -1) {
-      if (state === 'initial') {
-        buttonEl.classList.add(newState);
-      } else if (newState === 'initial') {
-        buttonEl.classList.remove(state);
-      } else {
-        buttonEl.classList.remove(state);
-        buttonEl.classList.add(newState);
+      if (buttonEl) {
+        if (state === 'initial') {
+          buttonEl.classList.add(newState);
+        } else if (newState === 'initial') {
+          buttonEl.classList.remove(state);
+        } else {
+          buttonEl.classList.remove(state);
+          buttonEl.classList.add(newState);
+        }
       }
       state = newState;
       if (state in methods) {
@@ -53,11 +55,11 @@ export default function Button(options = {}) {
     if (iconComponent && text) {
       return `<span class="flex row align-center">
                 <span class="${textCls} margin-right-small">${text}</span>
-                <span class="icon">${iconComponent.render()}</span>
+                <span class="icon ${iconCls}">${iconComponent.render()}</span>
               </span>`;
     }
     if (iconComponent) {
-      return `<span class="icon">${iconComponent.render()}</span>`;
+      return `<span class="icon ${iconCls}">${iconComponent.render()}</span>`;
     }
     return `<span class="${textCls}">${text}</span>`;
   };

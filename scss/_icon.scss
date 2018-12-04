@@ -4,6 +4,8 @@ $icon-size-small: $size-4;
 $icon-size-medium: $size-5;
 $icon-size-large: $size-6;
 $icon-active-color: $primary-color;
+$icon-inactive-color: $grey;
+$icon-disabled-color: $grey-light;
 $icon-default-color: $grey-dark;
 $icon-primary-color: $primary-color;
 $icon-primary-inverse-color: $primary-color-inverse;
@@ -35,22 +37,30 @@ button {
     margin: 0;
     padding: 0;
   }
+  .icon {
+    display: inline-block;
+  }
+  &.icon-smallest .icon,
   &.icon-smallest .icon > * {
     height: $icon-size-smallest;
     width: $icon-size-smallest;
   }
+  &.icon-smaller .icon,
   &.icon-smaller .icon > * {
     height: $icon-size-smaller;
     width: $icon-size-smaller;
   }
+  &.icon-small .icon,
   &.icon-small .icon > * {
     height: $icon-size-small;
     width: $icon-size-small;
   }
+  &.icon-medium .icon,
   &.icon-medium .icon > * {
     height: $icon-size-medium;
     width: $icon-size-medium;
   }
+  &.icon-large .icon,
   &.icon-large .icon > * {
     height: $icon-size-large;
     width: $icon-size-large;
@@ -72,6 +82,14 @@ button svg {
 .button.active svg,
 button.active svg {
   fill: $icon-active-color;
+}
+.button.inactive svg,
+button.inactive svg {
+  fill: $icon-inactive-color;
+}
+.button.disabled svg,
+button.disabled svg {
+  fill: $icon-disabled-color;
 }
 .button.primary svg,
 button.primary svg {

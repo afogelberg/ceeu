@@ -12,8 +12,10 @@ export default function Collapse(options = {}) {
     collapseY = true,
     contentComponent,
     headerComponent,
+    contentCls = '',
     data = {},
-    style: styleSettings
+    style: styleSettings,
+    tagName = 'div'
   } = options;
 
   const style = createStyle(styleSettings);
@@ -24,24 +26,41 @@ export default function Collapse(options = {}) {
   let containerEl;
   let contentEl;
 
+  // Restore auto size after transition
+  const onTransitionEnd = function onTransitionEnd() {
+    containerEl.removeEventListener('transitionend', onTransitionEnd);
+    if (collapseY) containerEl.style.height = null;
+    if (collapseX) containerEl.style.width = null;
+  };
+
   const expand = function expand() {
     expanded = true;
-    if (collapseY) {
-      const height = contentEl.scrollHeight;
-      containerEl.style.height = `${height}px`;
-    }
-    if (collapseX) {
-      const width = contentEl.scrollWidth;
-      containerEl.style.width = `${width}px`;
-    }
+    collapseEl.classList.add('expanded');
+    const newHeight = contentEl.scrollHeight;
+    const newWidth = contentEl.scrollHeight;
+    if (collapseY) containerEl.style.height = `${newHeight}px`;
+    if (collapseX) containerEl.style.width = `${newWidth}px`;
+    containerEl.addEventListener('transitionend', onTransitionEnd);
   };
 
   const collapse = function collapse() {
     expanded = false;
-    const height = 0;
-    const width = 0;
-    if (collapseY) containerEl.style.height = `${height}px`;
-    if (collapseX) containerEl.style.width = `${width}px`;
+    const collapseSize = 0;
+    collapseEl.classList.remove('expanded');
+    const currentHeight = contentEl.scrollHeight;
+    const currentWidth = contentEl.scrollWidth;
+    const elementTransition = containerEl.style.transition;
+    containerEl.style.transition = '';
+
+    requestAnimationFrame(() => {
+      if (collapseY) containerEl.style.height = `${currentHeight}px`;
+      if (collapseX) containerEl.style.width = `${currentWidth}px`;
+      containerEl.style.transition = elementTransition;
+
+      requestAnimationFrame(() => {
+        containerEl.style.height = `${collapseSize}px`;
+      });
+    });
   };
 
   const toggle = function toggle(evt) {
@@ -49,9 +68,9 @@ export default function Collapse(options = {}) {
     evt.stopPropagation();
     if (expanded) {
       this.collapse();
-      return;
+    } else {
+      this.expand();
     }
-    expand();
     this.dispatch(toggleEvent);
   };
 
@@ -82,12 +101,12 @@ export default function Collapse(options = {}) {
       }
     },
     render: function render() {
-      return `<div id="${this.getId()}" class="collapse ${cls}" style="${style}">
+      return `<${tagName} id="${this.getId()}" class="collapse ${cls}" style="${style}">
                 ${headerComponent.render()}
-                <div id="${containerId}" class="collapse-container">
+                <div id="${containerId}" class="collapse-container ${contentCls}" style="height: 0;">
                   ${contentComponent.render()}
                 </div>
-              </div>`;
+              </${tagName}>`;
     },
     toggle
   });

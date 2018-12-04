@@ -1,8 +1,9 @@
 import Button from './src/button';
 import Collapse from './src/collapse';
+import CollapseHeader from './src/collapseheader';
 import Icon from './src/icon';
 import Element from './src/element';
-import Sidenav from './src/sidenav';
+import Slidenav from './src/slidenav';
 import ToggleGroup from './src/togglegroup';
 import * as dom from './src/dom/dom';
 import Component from './src/component';
@@ -13,12 +14,13 @@ const cu = {
   Button,
   cuid,
   Collapse,
+  CollapseHeader,
   Component,
   Element,
   Eventer,
   Icon,
   dom,
-  Sidenav,
+  Slidenav,
   ToggleGroup
 };
 
