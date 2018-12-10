@@ -36,8 +36,8 @@ export default function Collapse(options = {}) {
   const expand = function expand() {
     expanded = true;
     collapseEl.classList.add('expanded');
-    const newHeight = contentEl.scrollHeight;
-    const newWidth = contentEl.scrollHeight;
+    const newHeight = contentEl.offsetHeight;
+    const newWidth = contentEl.scrollWidth;
     if (collapseY) containerEl.style.height = `${newHeight}px`;
     if (collapseX) containerEl.style.width = `${newWidth}px`;
     containerEl.addEventListener('transitionend', onTransitionEnd);
@@ -47,7 +47,7 @@ export default function Collapse(options = {}) {
     expanded = false;
     const collapseSize = 0;
     collapseEl.classList.remove('expanded');
-    const currentHeight = contentEl.scrollHeight;
+    const currentHeight = contentEl.offsetHeight;
     const currentWidth = contentEl.scrollWidth;
     const elementTransition = containerEl.style.transition;
     containerEl.style.transition = '';
@@ -93,17 +93,13 @@ export default function Collapse(options = {}) {
       containerEl = document.getElementById(containerId);
       contentEl = document.getElementById(contentComponent.getId());
       this.dispatch('render');
-
-      if (expanded) {
-        this.expand();
-      } else {
-        this.collapse();
-      }
     },
     render: function render() {
-      return `<${tagName} id="${this.getId()}" class="collapse ${cls}" style="${style}">
+      const height = expanded ? '' : 'height: 0;';
+      const isExpanded = expanded ? 'expanded' : '';
+      return `<${tagName} id="${this.getId()}" class="collapse ${cls} ${isExpanded}" style="${style}">
                 ${headerComponent.render()}
-                <div id="${containerId}" class="collapse-container ${contentCls}" style="height: 0;">
+                <div id="${containerId}" class="collapse-container ${contentCls}" style="${height}">
                   ${contentComponent.render()}
                 </div>
               </${tagName}>`;

@@ -49,6 +49,7 @@ var app = function app() {
     return cu.Collapse({
       cls: 'control abosolute overflow-hidden',
       collapseX: false,
+      expanded: true,
       contentComponent: contentCmp,
       headerComponent: headerCmp,
       origin: 'top-left'

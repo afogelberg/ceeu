@@ -18,5 +18,10 @@
         transform: rotate(90deg);
       }     
     }
+    .rotate-180 {
+      &.icon {
+        transform: rotate(180deg);
+      }     
+    }    
   }
 }
