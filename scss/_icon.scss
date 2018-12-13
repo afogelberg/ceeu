@@ -105,6 +105,21 @@ svg {
   &.primary {
     fill: $icon-primary-color;
   }
+  &.grey-dark {
+    fill: $grey-dark;
+  }  
+  &.grey {
+    fill: $grey;
+  }
+  &.grey-light {
+    fill: $grey-light;
+  }
+  &.grey-lighter {
+    fill: $grey-lighter;
+  }
+  &.grey-lightest {
+    fill: $grey-lightest;
+  }       
 }
 
 img.cover {

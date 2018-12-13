@@ -117,6 +117,7 @@ export default function Slidenav(options = {}) {
       backButton = Button({
         cls: 'icon-small padding-small',
         icon: backIcon,
+        iconCls: 'grey',
         click: () => {
           this.slideToMain();
         }

@@ -104,12 +104,20 @@
     pointer-events: none; }
   .cu .fade-in {
     animation: 0.3s fade-in ease; }
+  .cu .fade-out {
+    animation: 0.3s fade-out ease; }
 
 @keyframes fade-in {
   from {
     opacity: 0; }
   to {
     opacity: 1; } }
+
+@keyframes fade-out {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0; } }
   .cu .bg-primary {
     background-color: #008ff5; }
   .cu .bg-black {
@@ -370,6 +378,10 @@
     height: 100%; }
   .cu .no-margin.width-full {
     width: 100%; }
+  .cu .height-100 {
+    height: 100%; }
+  .cu .width-100 {
+    width: 100%; }
   .cu .width-4 {
     width: 4rem; }
   .cu .width-8 {
@@ -539,6 +551,9 @@
   .cu .transparent > * {
     pointer-events: auto; }
   .cu .transparent > .transparent {
+    pointer-events: none; }
+  .cu .faded {
+    opacity: 0;
     pointer-events: none; }
   .cu .boxshadow-subtle {
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2); }
@@ -791,12 +806,15 @@
     .cu .button.border.primary.active,
     .cu button.border.primary.active {
       border: 2px solid #0080db; }
-    .cu .button.round [class*='icon'] > *,
-    .cu .button.round [class^='icon'] > *,
-    .cu button.round [class*='icon'] > *,
-    .cu button.round [class^='icon'] > * {
-      border-radius: 50%;
-      overflow: hidden; }
+    .cu .button.round,
+    .cu button.round {
+      border-radius: 50%; }
+      .cu .button.round [class*='icon'] > *,
+      .cu .button.round [class^='icon'] > *,
+      .cu button.round [class*='icon'] > *,
+      .cu button.round [class^='icon'] > * {
+        border-radius: 50%;
+        overflow: hidden; }
   .cu button,
   .cu .button {
     outline: none; }
@@ -909,6 +927,16 @@
     fill: white; }
   .cu svg.primary {
     fill: #008ff5; }
+  .cu svg.grey-dark {
+    fill: #4a4a4a; }
+  .cu svg.grey {
+    fill: #7a7a7a; }
+  .cu svg.grey-light {
+    fill: #b5b5b5; }
+  .cu svg.grey-lighter {
+    fill: #dbdbdb; }
+  .cu svg.grey-lightest {
+    fill: #ebebeb; }
   .cu img.cover {
     object-fit: cover; }
   .cu img.contain {

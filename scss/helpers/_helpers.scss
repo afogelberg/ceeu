@@ -19,6 +19,11 @@
   pointer-events: none;
 }
 
+.faded {
+  opacity: 0;
+  pointer-events: none;
+}
+
 .boxshadow-subtle {
   box-shadow: $shadow-subtle;
 }

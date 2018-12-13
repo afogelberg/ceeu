@@ -21,7 +21,7 @@ export default function CollapseHeader(options = {}) {
   const headerButton = Button({
     cls: 'icon-small compact round',
     icon,
-    iconCls: 'rotate',
+    iconCls: 'rotate grey',
     style: {
       'align-self': 'flex-end'
     }
@@ -44,6 +44,7 @@ export default function CollapseHeader(options = {}) {
         const customEvt = new CustomEvent(collapseEvent, {
           bubbles: true
         });
+        el.blur();
         el.dispatchEvent(customEvt);
       });
     },

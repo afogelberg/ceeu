@@ -7,18 +7,21 @@ export default function Collapse(options = {}) {
     expanded = false
   } = options;
   const {
+    bubble = false,
     cls = '',
     collapseX = true,
     collapseY = true,
     contentComponent,
     headerComponent,
     contentCls = '',
+    contentStyle: contentStyleOptions = {},
     data = {},
     style: styleSettings,
     tagName = 'div'
   } = options;
 
   const style = createStyle(styleSettings);
+  const contentStyle = createStyle(contentStyleOptions);
   const toggleEvent = 'collapse:toggle';
   const collapseEvent = 'collapse:collapse';
   const containerId = cuid();
@@ -65,7 +68,7 @@ export default function Collapse(options = {}) {
 
   const toggle = function toggle(evt) {
     evt.preventDefault();
-    evt.stopPropagation();
+    if (!bubble) evt.stopPropagation();
     if (expanded) {
       this.collapse();
     } else {
@@ -99,7 +102,7 @@ export default function Collapse(options = {}) {
       const isExpanded = expanded ? 'expanded' : '';
       return `<${tagName} id="${this.getId()}" class="collapse ${cls} ${isExpanded}" style="${style}">
                 ${headerComponent.render()}
-                <div id="${containerId}" class="collapse-container ${contentCls}" style="${height}">
+                <div id="${containerId}" class="collapse-container ${contentCls}" style="${height} ${contentStyle}">
                   ${contentComponent.render()}
                 </div>
               </${tagName}>`;
