@@ -1,8 +1,6 @@
 import Component from './component';
-import Element from './element';
 import Icon from './icon';
 import { createStyle } from './dom/dom';
-import isComponent from './utils/iscomponent';
 
 export default function Button(options = {}) {
   let {
