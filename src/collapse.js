@@ -61,7 +61,8 @@ export default function Collapse(options = {}) {
       containerEl.style.transition = elementTransition;
 
       requestAnimationFrame(() => {
-        containerEl.style.height = `${collapseSize}px`;
+        if (collapseY) containerEl.style.height = `${collapseSize}px`;
+        if (collapseX) containerEl.style.width = `${collapseSize}px`;
       });
     });
   };
@@ -98,11 +99,12 @@ export default function Collapse(options = {}) {
       this.dispatch('render');
     },
     render: function render() {
-      const height = expanded ? '' : 'height: 0;';
+      const height = !expanded && collapseY ? 'height: 0;' : '';
+      const width = !expanded && collapseX ? 'width: 0;' : '';
       const isExpanded = expanded ? 'expanded' : '';
       return `<${tagName} id="${this.getId()}" class="collapse ${cls} ${isExpanded}" style="${style}">
                 ${headerComponent.render()}
-                <div id="${containerId}" class="collapse-container ${contentCls}" style="${height} ${contentStyle}">
+                <div id="${containerId}" class="collapse-container ${contentCls}" style="${height} ${width} ${contentStyle}">
                   ${contentComponent.render()}
                 </div>
               </${tagName}>`;
