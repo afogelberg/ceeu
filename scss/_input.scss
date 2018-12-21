@@ -1,0 +1,47 @@
+$button-padding-medium: $padding-small $padding-small * 1.5;
+
+// form
+textarea,
+select,
+input {
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: $text-normal;
+  line-height: $line-height-base;
+  padding: $button-padding-medium;
+  &.grey {
+    background-color: $grey-lighter;
+  }
+  &.grey::placeholder {
+    color: $grey-dark;
+  }  
+}
+input {
+  &.search {
+    border: none;
+    max-width: 100%;
+    outline: none;
+  }
+}
+label {
+  font-weight: $font-weight-bold;
+  font-size: $text-normal;
+  line-height: $line-height-base;
+}
+input[type=checkbox] {
+  color: $white;
+  height: 1rem;
+  line-height: 1.5rem;
+  margin: .25rem;
+  vertical-align: bottom;
+  width: 1rem;
+}
+input[type=button] {
+  background-color: $white;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type=button]:hover {
+  background-color: $border-color;
+}

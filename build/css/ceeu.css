@@ -724,6 +724,44 @@
     .cu .box.transparent {
       background-color: transparent;
       overflow: visible; }
+  .cu textarea,
+  .cu select,
+  .cu input {
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1.5;
+    padding: 0.5rem 0.75rem; }
+    .cu textarea.grey,
+    .cu select.grey,
+    .cu input.grey {
+      background-color: #dbdbdb; }
+    .cu textarea.grey::placeholder,
+    .cu select.grey::placeholder,
+    .cu input.grey::placeholder {
+      color: #4a4a4a; }
+  .cu input.search {
+    border: none;
+    max-width: 100%;
+    outline: none; }
+  .cu label {
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.5; }
+  .cu input[type=checkbox] {
+    color: white;
+    height: 1rem;
+    line-height: 1.5rem;
+    margin: .25rem;
+    vertical-align: bottom;
+    width: 1rem; }
+  .cu input[type=button] {
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer; }
+  .cu input[type=button]:hover {
+    background-color: #dbdbdb; }
   .cu .button,
   .cu button {
     background-color: transparent;
